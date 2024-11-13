@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Diagnosis Penyakit dan Hama Tanaman Kelapa Sawit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <script>
+        function diagnose() {
+            const symptoms = document.getElementById('gejala').value.toLowerCase();
+            let diagnosis = '';
+
+            if (symptoms.includes('kuning') && symptoms.includes('layu')) {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Penyakit Akar (Blast Disease)</h3>
+                    <p><strong>Gejala:</strong> Daun menguning dan layu, pertumbuhan terhambat. Akar menjadi busuk dan berwarna coklat.</p>
+                    <p><strong>Penyebab:</strong> Jamur patogen seperti Fusarium dan Pythium.</p>
+                    <p><strong>Cara Penanganan:</strong> Penggunaan benih yang sehat. Penerapan fungisida dan pengelolaan drainase yang baik.</p>
+                `;
+            } else if (symptoms.includes('batang') && symptoms.includes('busuk')) {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Penyakit Busuk Pangkal Batang (Basal Stem Rot)</h3>
+                    <p><strong>Gejala:</strong> Batang membusuk di bagian pangkal, daun menguning. Terdapat bau busuk pada bagian yang terinfeksi.</p>
+                    <p><strong>Penyebab:</strong> Jamur Ganoderma.</p>
+                    <p><strong>Cara Penanganan:</strong> Pemangkasan bagian yang terinfeksi. Penggunaan fungisida dan pengelolaan sanitasi kebun.</p>
+                `;
+            } else if (symptoms.includes('kuncup') && symptoms.includes('busuk')) {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Penyakit Busuk Kuncup (Spear Rot)</h3>
+                    <p><strong>Gejala:</strong> Kuncup daun yang membusuk dan tidak dapat membuka. Daun muda berwarna coklat.</p>
+                    <p><strong>Penyebab:</strong> Infeksi jamur dan bakteri.</p>
+                    <p><strong>Cara Penanganan:</strong> Penggunaan fungisida dan pemangkasan kuncup yang terinfeksi.</p>
+                `;
+            } else if (symptoms.includes('daun') && symptoms.includes('bercak')) {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Penyakit Bercak Daun (Leaf Spot)</h3>
+                    <p><strong>Gejala:</strong> Muncul bercak-bercak coklat pada daun. Daun menguning dan rontok.</p>
+                    <p><strong>Penyebab:</strong> Jamur dan bakteri.</p>
+                    <p><strong>Cara Penanganan:</strong> Penyemprotan fungisida dan pengelolaan sanitasi.</p>
+                `;
+            } else if (symptoms.includes('daun') && symptoms.includes('keriting')) {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Ulat Api</h3>
+                    <p><strong>Gejala:</strong> Daun menjadi keriting dan rontok.</p>
+                    <p><strong>Penyebab:</strong> Larva dari kupu-kupu.</p>
+                    <p><strong>Cara Penanganan:</strong> Penyemprotan insektisida dan pengendalian manual.</p>
+                `;
+            } else {
+                diagnosis = `
+                    <h3 class="text-xl font-bold mb-2">Tidak Diketahui</h3>
+                    <p>Gejala yang Anda masukkan tidak dapat dikenali. Silakan coba lagi dengan gejala yang lebih spesifik.</p>
+                `;
+            }
+
+            document.getElementById('diagnosis-result').innerHTML = diagnosis;
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-roboto">
+    <header class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Sistem Pakar Kelapa Sawit</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a class="hover:underline" href="index.html">Home</a></li>
+                    <li><a class="hover:underline" href="diagnosis.html">Diagnosis</a></li>
+                    <li><a class="hover:underline" href="penyakit.html">Penyakit</a></li>
+                    <li><a class="hover:underline" href="Hama.html">Hama</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto p-4">
+        <section class="my-8" id="diagnosis">
+            <h2 class="text-3xl font-bold mb-4">Diagnosis Penyakit dan Hama</h2>
+            <form class="bg-white p-4 rounded shadow" onsubmit="event.preventDefault(); diagnose();">
+                <div class="mb-4">
+                    <label class="block text-lg font-bold mb-2" for="gejala">Gejala yang Dialami:</label>
+                    <textarea class="w-full p-2 border border-gray-300 rounded" id="gejala" placeholder="Deskripsikan gejala yang dialami..." rows="4"></textarea>
+                </div>
+                <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" type="submit">Diagnosa</button>
+            </form>
+            <div class="mt-4 bg-white p-4 rounded shadow" id="diagnosis-result"></div>
+        </section>
+    </main>
+</body>
+</html>
